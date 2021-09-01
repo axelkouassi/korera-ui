@@ -5,7 +5,7 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Logo</Link>
+            <Link to="/">Resource Management</Link>
           </li>
           <li>
             <Link to="/">Icon Login</Link>
