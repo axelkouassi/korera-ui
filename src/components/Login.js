@@ -12,7 +12,7 @@ const Login = () => {
           </Col>
         </Row>
         <Form>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control type="text" placeholder="Enter username" />
             {/* <Form.Text className="text-muted">
