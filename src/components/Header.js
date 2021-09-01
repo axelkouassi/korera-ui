@@ -1,22 +1,34 @@
 import { Link } from "react-router-dom";
-function Header() {
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Col, Container, Row } from "react-bootstrap";
+const Header = () => {
   return (
-    <header className="App-header">
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Resource Management</Link>
-          </li>
-          <li>
-            <Link to="/">Icon Login</Link>
-          </li>
-          <li>
-            <Link>Icon Project Description</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Container fluid>
+      <Row>
+        <header className="App-header">
+          <nav>
+            <ul>
+              <Col>
+                <li>
+                  <Link to="/">Resource Management</Link>
+                </li>
+              </Col>
+              <Col>
+                <li>
+                  <Link to="/">Icon Login</Link>
+                </li>
+              </Col>
+              <Col>
+                <li>
+                  <Link>Icon Project Description</Link>
+                </li>
+              </Col>
+            </ul>
+          </nav>
+        </header>
+      </Row>
+    </Container>
   );
-}
+};
 
 export default Header;
