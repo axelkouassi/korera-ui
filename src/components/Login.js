@@ -25,7 +25,7 @@ const Login = () => {
           </Col>
         </Row>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Form.Group controlId="formBasicUsername">
+          <Form.Group hasValidation controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control required type="text" placeholder="Enter username" />
             <Form.Control.Feedback type="invalid">
@@ -33,7 +33,7 @@ const Login = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <br />
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group hasValidation controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control required type="password" placeholder="Password" />
             <Form.Control.Feedback type="invalid">
