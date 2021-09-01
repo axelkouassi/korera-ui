@@ -3,13 +3,20 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Login />
-      <Register />
+      <Switch>
+        <Route path="/" exact={true}>
+          <Login />
+        </Route>
+        <Route path="/register" exact={true}>
+          <Register />
+        </Route>
+      </Switch>
     </div>
   );
 }
