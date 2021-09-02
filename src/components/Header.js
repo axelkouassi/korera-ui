@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar } from "react-bootstrap";
+import { PersonCircle, QuestionCircle } from "react-bootstrap-icons";
 const Header = () => {
   return (
     // <header className="App-header">
@@ -34,12 +35,16 @@ const Header = () => {
         <Nav className="mr-auto my-2 my-lg-0 ">
           <Nav.Item>
             <Nav.Link>
-              <Link to="/">Icon Login</Link>
+              <Link to="/">
+                <PersonCircle />
+              </Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link>
-              <Link to="/">Icon Project Description</Link>
+              <Link to="/">
+                <QuestionCircle />
+              </Link>
             </Nav.Link>
           </Nav.Item>
         </Nav>
