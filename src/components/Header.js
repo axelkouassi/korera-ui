@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav, Navbar } from "react-bootstrap";
+import { Col, Nav, Navbar, Row } from "react-bootstrap";
 import { PersonCircle, QuestionCircle } from "react-bootstrap-icons";
 const Header = () => {
   return (
@@ -29,26 +29,33 @@ const Header = () => {
             />
           </Link>
         </Navbar.Brand>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Row>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto my-2 my-lg-0 ">
+              <Col>
+                <Nav.Item>
+                  <Nav.Link>
+                    <Link to="/">
+                      <PersonCircle />
+                    </Link>
+                  </Nav.Link>
+                </Nav.Item>
+              </Col>
+              <Col>
+                <Nav.Item>
+                  <Nav.Link>
+                    <Link to="/">
+                      <QuestionCircle />
+                    </Link>
+                  </Nav.Link>
+                </Nav.Item>
+              </Col>
+            </Nav>
+          </Navbar.Collapse>
+        </Row>
       </div>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto my-2 my-lg-0 ">
-          <Nav.Item>
-            <Nav.Link>
-              <Link to="/">
-                <PersonCircle />
-              </Link>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <Link to="/">
-                <QuestionCircle />
-              </Link>
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </Navbar.Collapse>
     </Navbar>
     //</header> */}
   );
