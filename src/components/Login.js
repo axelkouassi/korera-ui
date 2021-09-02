@@ -20,12 +20,12 @@ const Login = () => {
       <div id="login">
         <Row>
           <Col>
-            <h1>Login</h1>
+            <h3 class="h3 mb-3 fw-normal">Login</h3>
             <br />
           </Col>
         </Row>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Form.Group hasValidation controlId="formBasicUsername">
+          <Form.Group class="form-floating" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control required type="text" placeholder="Enter username" />
             <Form.Control.Feedback type="invalid">
@@ -33,7 +33,7 @@ const Login = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <br />
-          <Form.Group hasValidation controlId="formBasicPassword">
+          <Form.Group class="form-floating" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control required type="password" placeholder="Password" />
             <Form.Control.Feedback type="invalid">
@@ -45,7 +45,7 @@ const Login = () => {
             Login
           </Button>
           <br />
-          <Form.Group controlId="formBasicCheckbox">
+          <Form.Group class="checkbox mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Remember me" />
           </Form.Group>
           <br />

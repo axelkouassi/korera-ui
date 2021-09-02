@@ -1,4 +1,3 @@
-import logo from "./Capture.JPG";
 import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
