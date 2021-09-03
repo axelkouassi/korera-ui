@@ -2,17 +2,24 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Nav, Navbar, Row } from "react-bootstrap";
 import { PersonCircle, QuestionCircle } from "react-bootstrap-icons";
+
+console.log("***Header Navbar***");
+console.log("Entering header...");
+
 const Header = () => {
+  console.log("Inside header");
+
   return (
     // <header className="App-header">
     <Navbar
       bg="light"
-      /* fixed="top" */
-      class="navbar fixed-top navbar-light bg-light "
-      /* justify-content-between="true"
-      expand="lg" */
+      fixed="top"
+      className="navbar fixed-top navbar-light bg-light "
+      /* justify-content-between="true" */
+      /* expand="lg" */
     >
-      <div class="container-fluid">
+      {console.log("Inside header return()")}
+      <div className="container-fluid">
         <Navbar.Brand>
           <Link to="/">
             <img
@@ -46,7 +53,7 @@ const Header = () => {
               <Col>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/">
+                    <Link to="/register">
                       <QuestionCircle />
                     </Link>
                   </Nav.Link>
