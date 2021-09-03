@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+console.log("Entering Login...");
+
 const Login = () => {
+  console.log("Inside  Login");
   const [validated, setValidated] = useState(false);
+  const usernameRef = useRef(); // username ref
+  const passwordRef = useRef(); // password ref
 
   const handleSubmit = (event) => {
+    console.log("Inside  handleSubmit");
+
+    event.preventDefault();
+
+    const enteredUsername = usernameRef.current.value; // user entered username
+    const enteredPassword = passwordRef.current.value; // user entered password
+
+    //Object to store all user's entered information
+    const LoginInfo = {
+      username: enteredUsername,
+      password: enteredPassword,
+    };
+
+    console.log("Login info: ", LoginInfo);
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -27,7 +47,12 @@ const Login = () => {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group class="form-floating" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
-            <Form.Control required type="text" placeholder="Enter username" />
+            <Form.Control
+              ref={usernameRef}
+              required
+              type="text"
+              placeholder="Enter username"
+            />
             <Form.Control.Feedback type="invalid">
               Username is required!
             </Form.Control.Feedback>
@@ -35,7 +60,12 @@ const Login = () => {
           <br />
           <Form.Group class="form-floating" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control required type="password" placeholder="Password" />
+            <Form.Control
+              ref={passwordRef}
+              required
+              type="password"
+              placeholder="Password"
+            />
             <Form.Control.Feedback type="invalid">
               Password is required!
             </Form.Control.Feedback>
