@@ -7,12 +7,14 @@ console.log("Entering login form...");
 
 const LoginForm = (props) => {
   console.log("Inside login form");
+  console.log(props);
   const [validated, setValidated] = useState(false);
   const usernameRef = useRef(); // username ref
   const passwordRef = useRef(); // password ref
 
   const handleSubmit = (event) => {
     console.log("Inside  handleSubmit");
+    console.log(props);
 
     event.preventDefault();
 
@@ -20,12 +22,12 @@ const LoginForm = (props) => {
     const enteredPassword = passwordRef.current.value; // user entered password
 
     //Object to store all user's entered information
-    const LoginInfo = {
+    const loginInfo = {
       username: enteredUsername,
       password: enteredPassword,
     };
 
-    console.log("Login info: ", LoginInfo);
+    console.log("Login info: ", loginInfo);
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -33,15 +35,15 @@ const LoginForm = (props) => {
       event.stopPropagation();
     }
 
-    setValidated(true);
+    //Send user info data to login page
+    props.onClickLoginButton(loginInfo);
 
-    //Send user info data to APIs handler
-    props.onClickLoginButton(LoginInfo);
+    setValidated(true);
   };
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      {console.log("Inside login form return()")}
+      {console.log("Inside return()")}
       <Form.Group className="form-floating" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control
