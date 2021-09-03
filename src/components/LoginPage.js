@@ -12,7 +12,7 @@ const LoginPage = () => {
   const history = useHistory();
 
   const getRequest = (loginInfo) => {
-    console.log("Inside get request");
+    console.log("Inside post request");
     /* const api = axios.create({
       baseURL: "http://localhost:8080/korera/user",
     }); */
@@ -27,7 +27,7 @@ const LoginPage = () => {
     axios.defaults.baseURL = "http://localhost:8080/korera/user";
 
     axios
-      .get("/login", loginData, {
+      .post("/login", loginData, {
         headers: {
           "content-type": "application/json",
           "Access-Control-Allow-Origin": "*",
