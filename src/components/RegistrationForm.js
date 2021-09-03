@@ -31,7 +31,7 @@ const RegistrationForm = (props) => {
     const enteredMobileNumber = mobileNumberRef.current.value; // user's entered mobile number
 
     //Object to store all user's entered information
-    const UserInfo = {
+    const userInfo = {
       username: enteredUsername,
       email: enteredEmail,
       password: enteredPassword,
@@ -41,7 +41,7 @@ const RegistrationForm = (props) => {
       props,
     };
 
-    console.log("User info: ", UserInfo);
+    console.log("User info: ", userInfo);
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -49,10 +49,10 @@ const RegistrationForm = (props) => {
       event.stopPropagation();
     }
 
-    setValidated(true);
-
     //Send user info data to APIs handler
-    props.onClickRegisterButton(UserInfo);
+    props.onClickRegisterButton(userInfo);
+
+    setValidated(true);
   };
 
   return (
