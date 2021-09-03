@@ -1,11 +1,12 @@
 import "./App.css";
 import Header from "./components/Header";
-import Login from "./components/Login";
-import Register from "./components/Register";
 import { Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import APIs from "./components/APIs";
+import LoginPage from "./components/LoginPage";
+import RegistrationPage from "./components/RegistrationPage";
 
+console.log("***Main App***");
 console.log("Entering App...");
 
 function App() {
@@ -14,16 +15,17 @@ function App() {
     <div className="App">
       {console.log("Inside  App return()...")}
       <Header />
-      <br />
-      <Switch>
-        <Route path="/" exact={true}>
-          <Login />
-        </Route>
-        <Route path="/register" exact={true}>
-          <Register />
-        </Route>
-      </Switch>
-      <APIs />
+      <main>
+        <Switch>
+          <Route path="/" exact={true}>
+            <LoginPage />
+          </Route>
+          <Route path="/register" exact={true}>
+            <RegistrationPage />
+          </Route>
+        </Switch>
+        <APIs />
+      </main>
     </div>
   );
 }
