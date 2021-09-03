@@ -10,6 +10,7 @@ const api = axios.create({
   baseURL: "https://catfact.ninja",
 });
 
+console.log("***APIs Handler***");
 console.log("Entering APIs...");
 
 class APIs extends Component {
@@ -20,11 +21,11 @@ class APIs extends Component {
     api
       .get("/fact")
       .then((res) => {
-        console.log(res.data);
+        console.log("Response data: ", res.data);
       })
       .catch(function (error) {
         // handle error
-        console.log(error);
+        console.log("Error caught: ", error);
       })
       .then(function () {
         // always executed
