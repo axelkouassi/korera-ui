@@ -43,19 +43,15 @@ const Header = () => {
             <Nav className="mr-auto my-2 my-lg-0 ">
               <Col>
                 <Nav.Item>
-                  <Nav.Link>
-                    <Link to="/">
-                      <PersonCircle />
-                    </Link>
+                  <Nav.Link href="/">
+                    <PersonCircle />
                   </Nav.Link>
                 </Nav.Item>
               </Col>
               <Col>
                 <Nav.Item>
-                  <Nav.Link>
-                    <Link to="/register">
-                      <QuestionCircle />
-                    </Link>
+                  <Nav.Link href="/register">
+                    <QuestionCircle />
                   </Nav.Link>
                 </Nav.Item>
               </Col>
