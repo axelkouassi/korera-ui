@@ -36,12 +36,14 @@ const LoginPage = () => {
       })
       .then((res) => {
         console.log("Login response: ", res);
-        console.log("Login data: ", res.data);
+        if (res.data !== null) {
+          console.log("Login data: ", res.data);
+        }
         history.replace("/register");
       })
       .catch(function (error) {
         // handle error
-        console.log("Inside catch");
+        console.log("Inside catch error");
         console.log("Login data: ", loginData);
         // console.log("Error message: ", error.message);
         console.log("Error response data: ", error.response.data);
