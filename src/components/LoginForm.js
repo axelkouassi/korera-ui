@@ -43,7 +43,7 @@ const LoginForm = (props) => {
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      {console.log("Inside return()")}
+      {console.log("Inside login return()")}
       <Form.Group className="form-floating" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control
