@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   const history = useHistory();
 
-  const getRequest = (loginInfo) => {
+  const postRequest = (loginInfo) => {
     console.log("Inside post request");
     /* const api = axios.create({
       baseURL: "http://localhost:8080/korera/user",
@@ -20,7 +20,7 @@ const LoginPage = () => {
     console.log("Login info: ", loginInfo);
 
     const loginData = loginInfo;
-    console.log("Inside axios get request");
+    console.log("Inside axios post request");
 
     // const axios = require("axios");
 
@@ -39,7 +39,7 @@ const LoginPage = () => {
         if (res.data !== null) {
           console.log("Login data: ", res.data);
         }
-        history.replace("/register");
+        history.replace("/resource");
       })
       .catch(function (error) {
         // handle error
@@ -64,7 +64,7 @@ const LoginPage = () => {
   const loginHandler = (loginInfo) => {
     console.log("Inside login handler");
     console.log("Login info: ", loginInfo);
-    getRequest(loginInfo);
+    postRequest(loginInfo);
   };
 
   return (
