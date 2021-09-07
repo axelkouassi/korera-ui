@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 console.log("***Login Page***");
 console.log("Entering login page...");
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   console.log("Inside login page");
 
   const history = useHistory();
@@ -38,6 +38,10 @@ const LoginPage = () => {
         console.log("Login response: ", res);
         if (res.data !== null) {
           console.log("Login data: ", res.data);
+          console.log("Sending token to main app...");
+          console.log("Type of 'props': ", typeof props);
+          console.log(props);
+          props.sendTokenToApp(res.data);
         }
         history.replace("/resource");
       })
@@ -46,11 +50,11 @@ const LoginPage = () => {
         console.log("Inside catch error");
         console.log("Login data: ", loginData);
         // console.log("Error message: ", error.message);
-        console.log("Error response data: ", error.response.data);
+        /* console.log("Error response data: ", error.response.data);
         console.log(
           "Error response data message: ",
           error.response.data.message
-        );
+        ); */
         console.log("Error caught: ", error);
         /* console.log("Error response status: ", error.response.status);
         console.log("Error response headers: ", error.response.headers); */
