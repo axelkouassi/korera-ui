@@ -6,12 +6,30 @@ import APIs from "./components/APIs";
 import LoginPage from "./components/LoginPage";
 import RegistrationPage from "./components/RegistrationPage";
 import ResourcePage from "./components/ResourcePage";
+import { useState } from "react";
 
 console.log("***Main App***");
 console.log("Entering App...");
 
 function App() {
   console.log("Inside App...");
+
+  const [token, setToken] = useState("");
+
+  //Get token from login page
+  const getTokenFromLoginPage = (tokenData) => {
+    console.log("Token received after login: ", tokenData);
+    setToken(tokenData);
+    console.log("Token inside main app", token);
+  };
+
+  //currenttoken
+  const currentToken = () => {
+    getTokenFromLoginPage(token);
+    const currentToken = token;
+    return currentToken;
+  };
+
   return (
     <div className="App">
       {console.log("Inside  App return()...")}
@@ -19,13 +37,13 @@ function App() {
       <main>
         <Switch>
           <Route path="/" exact={true}>
-            <LoginPage />
+            <LoginPage sendTokenToApp={getTokenFromLoginPage} />
           </Route>
           <Route path="/register" exact={true}>
             <RegistrationPage />
           </Route>
           <Route path="/resource" exact={true}>
-            <ResourcePage />
+            <ResourcePage tokenFromApp={token} />
           </Route>
         </Switch>
         <APIs />
