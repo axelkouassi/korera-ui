@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Col,
   Container,
@@ -9,20 +9,24 @@ import {
   Table,
 } from "react-bootstrap";
 import {
-  Columns,
   Justify,
   LayoutSplit,
-  List,
   PlusSquareFill,
   Search,
 } from "react-bootstrap-icons";
+import LoginPage from "./LoginPage";
 import Sidebar from "./Sidebar";
 
 console.log("***Resource Page***");
 console.log("Entering resource page...");
 
-const ResourcePage = () => {
+const ResourcePage = (props) => {
   console.log("Inside resource page...");
+
+  console.log(props);
+  const tokenFromApp = props.tokenFromApp;
+  console.log("Token from App: ", tokenFromApp);
+
   return (
     <Container fluid>
       <Row>
@@ -100,17 +104,18 @@ const ResourcePage = () => {
             </thead>
             <tbody bordered hover>
               <tr>
-                <td>1</td>
-                <td>Mark</td>
+                <td>Resource 1</td>
+                <td>00 00 00</td>
               </tr>
               <tr>
-                <td>Thornton</td>
-                <td>@fat</td>
+                <td>Resource 2</td>
+                <td>01 00 00</td>
               </tr>
             </tbody>
-          </Table>{" "}
+          </Table>
         </Col>
       </Row>
+      <LoginPage />
     </Container>
   );
 };
