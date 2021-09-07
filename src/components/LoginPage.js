@@ -49,15 +49,15 @@ const LoginPage = (props) => {
         // handle error
         console.log("Inside catch error");
         console.log("Login data: ", loginData);
-        // console.log("Error message: ", error.message);
-        /* console.log("Error response data: ", error.response.data);
+        console.log("Error message: ", error.message);
+        console.log("Error response data: ", error.response.data);
         console.log(
           "Error response data message: ",
           error.response.data.message
-        ); */
+        );
         console.log("Error caught: ", error);
-        /* console.log("Error response status: ", error.response.status);
-        console.log("Error response headers: ", error.response.headers); */
+        console.log("Error response status: ", error.response.status);
+        console.log("Error response headers: ", error.response.headers);
       })
       .then(function () {
         // always executed
