@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Col,
   Container,
@@ -14,8 +14,9 @@ import {
   PlusSquareFill,
   Search,
 } from "react-bootstrap-icons";
-import LoginPage from "./LoginPage";
+import axios from "axios";
 import Sidebar from "./Sidebar";
+import { useHistory } from "react-router-dom";
 
 console.log("***Resource Page***");
 console.log("Entering resource page...");
@@ -27,8 +28,76 @@ const ResourcePage = (props) => {
   const tokenFromApp = props.tokenFromApp;
   console.log("Token from App: ", tokenFromApp);
 
+  const [resources, setResources] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  let data = [];
+
+  const getRequest = () => {
+    console.log("Inside get request");
+
+    console.log("Inside axios get request");
+
+    // const axios = require("axios");
+
+    axios.defaults.baseURL = "http://localhost:8080/korera/resource";
+
+    axios
+      .get("/getresources", {
+        headers: {
+          Authorization: "Bearer " + tokenFromApp,
+          "content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        },
+      })
+      .then((res) => {
+        console.log("Inside first then()");
+        console.log("Resource response: ", res);
+        if (res.data !== null) {
+          setIsLoading(false);
+          setResources(res.data);
+          console.log("Resource data: ", res.data);
+        }
+        data = res.data;
+        // history.replace("/resource");
+      })
+      .catch(function (error) {
+        // handle error
+        console.log("Inside catch error");
+        console.log("Error message: ", error.message);
+        console.log("Error response data: ", error.response.data);
+        console.log(
+          "Error response data message: ",
+          error.response.data.message
+        );
+        console.log("Error caught: ", error);
+        console.log("Error response status: ", error.response.status);
+        console.log("Error response headers: ", error.response.headers);
+      })
+      .then(function () {
+        // always executed
+        console.log("Inside then() that always execute");
+      });
+  };
+
+  useEffect(() => {
+    console.log("Inside  useEffect()");
+    getRequest();
+    console.log("axiosgetRequest: ", getRequest());
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
   return (
     <Container fluid>
+      {console.log("Resource data", resources)}
       <Row>
         <Col xs={1} id="sidebar-wrapper">
           <Sidebar />{" "}
@@ -103,19 +172,18 @@ const ResourcePage = (props) => {
               </tr>
             </thead>
             <tbody bordered hover>
-              <tr>
-                <td>Resource 1</td>
-                <td>00 00 00</td>
-              </tr>
-              <tr>
-                <td>Resource 2</td>
-                <td>01 00 00</td>
-              </tr>
+              {resources.map((resource, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{resource.resourceName}</td>
+                    <td>{resource.resourceCode}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Col>
       </Row>
-      <LoginPage />
     </Container>
   );
 };
