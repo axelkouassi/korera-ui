@@ -18,7 +18,7 @@ const Sidebar = () => {
         textColor="#fff"
         /* backgroundColor="#333" */
         /* className="col-md-12 d-none d-md-block sidebar"
-        activeKey="/home" */
+        activeKey="/home" */ fluid
       >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           {/* <a
