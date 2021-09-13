@@ -139,6 +139,8 @@ const ResourcePage = (props) => {
    * @param currentName - The current name of the resource
    */
   const onEditName = ({ name, currentName }) => {
+    console.log("Inside onEditName");
+    console.log("Editable input is now available");
     setInEditName({
       status: true,
       rowKey: name,
@@ -151,6 +153,8 @@ const ResourcePage = (props) => {
    * @param currentCode - The current codeof the resource
    */
   const onEditCode = ({ code, currentCode }) => {
+    console.log("Inside onEditCode");
+    console.log("Editable input is now available");
     setInEditCode({
       status: true,
       rowKey: code,
@@ -371,74 +375,135 @@ const ResourcePage = (props) => {
                   <tr key={resource.resourceId}>
                     <td
                       key={resource.resourceName}
-                      onFocus={() =>
-                        setInEditName({
-                          status: true,
-                          rowKey: resource.resourceName,
-                        })
-                      }
+                      onFocus={() => {
+                        React.style = {
+                          border: "#ec641c",
+                        };
+                        onEditName({
+                          name: resource.resourceName,
+                          currentName: resource.resourceName,
+                        });
+                      }}
                       onBlur={() => onCancelName()}
+                      onClick={() => {
+                        console.log("Table data clicked!");
+                        React.style = {
+                          border: "#ec641c",
+                        };
+                        onEditName({
+                          name: resource.resourceName,
+                          currentName: resource.resourceName,
+                        });
+                      }}
                     >
                       {inEditName.status &&
                       inEditName.rowKey === resource.resourceName ? (
-                        <Fragment>
-                          <CheckCircleFill fill="#ec641c" />{" "}
-                        </Fragment>
-                      ) : null}
-
+                        <CheckCircleFill
+                          fill="#ec641c"
+                          Click={() => {
+                            console.log("Clicked!");
+                            /* onSaveName({
+                                currentName: resource.resourceName,
+                                newName: name,
+                              }); */
+                          }}
+                        />
+                      ) : null}{" "}
                       {inEditName.status &&
                       inEditName.rowKey === resource.resourceName ? (
                         <Fragment>
-                          <XCircleFill fill="#ec641c" />{" "}
+                          <XCircleFill
+                            fill="#ec641c"
+                            onClick={() => {
+                              console.log("Cancelled!");
+                              /* onCancelName(); */
+                            }}
+                          />{" "}
                         </Fragment>
                       ) : null}
-
-                      <input
-                        type="text"
-                        style={{
-                          border: inEditName.status ? "#ec641c" : "none",
-                          background: "transparent",
-                          textAlign: "center",
-                        }}
-                        onBlur={() => console.log("Inside input field")}
-                        onFocus={() => console.log("Outside input field")}
-                        value={resource.resourceName}
-                      />
+                      {inEditName.status &&
+                      inEditName.rowKey === resource.resourceName ? (
+                        <input
+                          type="text"
+                          style={{
+                            border: "none",
+                            background: "transparent",
+                            textAlign: "center",
+                          }}
+                          onBlur={() => console.log("Outside input field")}
+                          onFocus={() => console.log("Inside input field")}
+                          value={name}
+                          onChange={(event) => {
+                            console.log("Change(s) ocured!");
+                            setName(event.target.value);
+                          }}
+                        />
+                      ) : (
+                        resource.resourceName
+                      )}
                     </td>
                     <td
                       key={resource.resourceCode}
                       onFocus={() =>
-                        setInEditCode({
-                          status: true,
-                          rowKey: resource.resourceCode,
+                        onEditCode({
+                          code: resource.resourceCode,
+                          currentCode: resource.resourceCode,
                         })
                       }
                       onBlur={() => onCancelCode()}
+                      onClick={() => {
+                        console.log("Table data clicked!");
+                        React.style = {
+                          border: "#ec641c",
+                        };
+                        onEditCode({
+                          code: resource.resourceCode,
+                          currentCode: resource.resourceCode,
+                        });
+                      }}
                     >
                       {inEditCode.status &&
                       inEditCode.rowKey === resource.resourceCode ? (
                         <Fragment>
-                          <CheckCircleFill fill="#ec641c" />{" "}
+                          <CheckCircleFill
+                            fill="#ec641c"
+                            onClick={() =>
+                              onSaveCode({
+                                currentCode: resource.resourceCode,
+                                newCode: code,
+                              })
+                            }
+                          />{" "}
                         </Fragment>
                       ) : null}
 
                       {inEditCode.status &&
                       inEditCode.rowKey === resource.resourceCode ? (
                         <Fragment>
-                          <XCircleFill fill="#ec641c" />{" "}
+                          <XCircleFill
+                            fill="#ec641c"
+                            onClick={() => onCancelCode()}
+                          />{" "}
                         </Fragment>
                       ) : null}
-                      <input
-                        type="text"
-                        style={{
-                          border: "none",
-                          background: "transparent",
-                          textAlign: "center",
-                        }}
-                        onBlur={() => console.log("Inside input field")}
-                        onFocus={() => console.log("Outside input field")}
-                        value={resource.resourceCode}
-                      />
+
+                      {inEditCode.status &&
+                      inEditCode.rowKey === resource.resourceCode ? (
+                        <input
+                          type="text"
+                          style={{
+                            border: "none",
+                            background: "transparent",
+                            textAlign: "center",
+                          }}
+                          onBlur={() => console.log("Outside input field")}
+                          onFocus={() => console.log("Inside input field")}
+                          value={code}
+                          onChange={(event) => setCode(event.target.value)}
+                        />
+                      ) : (
+                        resource.resourceCode
+                      )}
                     </td>
                   </tr>
                 );
