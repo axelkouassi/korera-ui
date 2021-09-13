@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Col,
   Container,
@@ -371,32 +371,38 @@ const ResourcePage = (props) => {
                   <tr key={resource.resourceId}>
                     <td
                       key={resource.resourceName}
-                      /* contentEditable="true" */
-                      /* onBlur={() => console.log("Focus has been lost")}
-                      onFocus={() => console.log("Focus is here")} */
+                      onFocus={() =>
+                        setInEditName({
+                          status: true,
+                          rowKey: resource.resourceName,
+                        })
+                      }
+                      onBlur={() => onCancelName()}
                     >
-                      <CheckCircleFill fill="#ec641c" />{" "}
-                      <XCircleFill fill="#ec641c" />
+                      {inEditName.status &&
+                      inEditName.rowKey === resource.resourceName ? (
+                        <Fragment>
+                          <CheckCircleFill fill="#ec641c" />{" "}
+                        </Fragment>
+                      ) : null}
+
+                      {inEditName.status &&
+                      inEditName.rowKey === resource.resourceName ? (
+                        <Fragment>
+                          <XCircleFill fill="#ec641c" />{" "}
+                        </Fragment>
+                      ) : null}
+
                       <input
                         type="text"
                         style={{
-                          border: "none",
+                          border: inEditName.status ? "#ec641c" : "none",
                           background: "transparent",
                           textAlign: "center",
                         }}
-                        onBlur={() => console.log("Focus has been lost")}
-                        onFocus={() => console.log("Focus is here")}
-                        value={
-                          /* inEditName.status &&
-                      inEditName.rowKey === resource.resourceName ? (
-                        <input
-                          value={name}
-                          onChange={(event) => setName(event.target.value)}
-                        />
-                      ) : ( */
-                          resource.resourceName
-                          /* ) */
-                        }
+                        onBlur={() => console.log("Inside input field")}
+                        onFocus={() => console.log("Outside input field")}
+                        value={resource.resourceName}
                       />
                     </td>
                     <td
@@ -407,6 +413,7 @@ const ResourcePage = (props) => {
                     >
                       <CheckCircleFill fill="#ec641c" />{" "}
                       <XCircleFill fill="#ec641c" />
+                      {}
                       <input
                         type="text"
                         style={{
