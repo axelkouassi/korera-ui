@@ -12,6 +12,7 @@ import {
   CheckCircleFill,
   Justify,
   LayoutSplit,
+  PenFill,
   PlusSquareFill,
   Search,
   XCircleFill,
@@ -140,7 +141,7 @@ const ResourcePage = (props) => {
    */
   const onEditName = ({ name, currentName }) => {
     console.log("Inside onEditName");
-    console.log("Editable input is now available");
+    console.log("Editable input name is now available");
     setInEditName({
       status: true,
       rowKey: name,
@@ -154,7 +155,7 @@ const ResourcePage = (props) => {
    */
   const onEditCode = ({ code, currentCode }) => {
     console.log("Inside onEditCode");
-    console.log("Editable input is now available");
+    console.log("Editable input code is now available");
     setInEditCode({
       status: true,
       rowKey: code,
@@ -219,6 +220,7 @@ const ResourcePage = (props) => {
 
   const onCancelName = () => {
     // reset the inEditName state value
+    console.log("Inside onCancelName");
     setInEditName({
       status: false,
       rowKey: null,
@@ -285,6 +287,7 @@ const ResourcePage = (props) => {
 
   const onCancelCode = () => {
     // reset the inEditCode state value
+    console.log("Inside onCancelCode");
     setInEditCode({
       status: false,
       rowKey: null,
@@ -370,12 +373,12 @@ const ResourcePage = (props) => {
               </tr>
             </thead>
             <tbody bordered hover>
-              {resources.map((resource) => {
+              {resources.map((resource, index) => {
                 return (
                   <tr key={resource.resourceId}>
                     <td
                       key={resource.resourceName}
-                      onFocus={() => {
+                      /* onFocus={() => {
                         React.style = {
                           border: "#ec641c",
                         };
@@ -384,8 +387,8 @@ const ResourcePage = (props) => {
                           currentName: resource.resourceName,
                         });
                       }}
-                      onBlur={() => onCancelName()}
-                      onClick={() => {
+                      onBlur={() => onCancelName()} */
+                      /* onClick={() => {
                         console.log("Table data clicked!");
                         React.style = {
                           border: "#ec641c",
@@ -394,14 +397,14 @@ const ResourcePage = (props) => {
                           name: resource.resourceName,
                           currentName: resource.resourceName,
                         });
-                      }}
+                      }} */
                     >
                       {inEditName.status &&
                       inEditName.rowKey === resource.resourceName ? (
                         <CheckCircleFill
                           fill="#ec641c"
                           onClick={() => {
-                            console.log("Clicked!");
+                            console.log("Save name button clicked!");
                             /* onSaveName({
                                 currentName: resource.resourceName,
                                 newName: name,
@@ -411,16 +414,30 @@ const ResourcePage = (props) => {
                       ) : null}{" "}
                       {inEditName.status &&
                       inEditName.rowKey === resource.resourceName ? (
-                        <Fragment>
-                          <XCircleFill
-                            fill="#ec641c"
-                            onClick={() => {
-                              console.log("Cancelled!");
-                              /* onCancelName(); */
-                            }}
-                          />{" "}
-                        </Fragment>
-                      ) : null}
+                        <XCircleFill
+                          fill="#ec641c"
+                          onClick={() => {
+                            console.log("Cancel name button clicked!");
+                            onCancelName();
+                          }}
+                        />
+                      ) : null}{" "}
+                      {inEditName.status &&
+                      inEditName.rowKey === resource.resourceName ? null : (
+                        <PenFill
+                          fill="#ec641c"
+                          width="13"
+                          height="13"
+                          onClick={() => {
+                            console.log("Edit name button clicked!");
+                            onEditName({
+                              name: resource.resourceName,
+                              currentName: resource.resourceName,
+                            });
+                          }}
+                        />
+                      )}
+                      {"  "}
                       {inEditName.status &&
                       inEditName.rowKey === resource.resourceName ? (
                         <input
@@ -430,7 +447,10 @@ const ResourcePage = (props) => {
                             background: "transparent",
                             textAlign: "center",
                           }}
-                          onBlur={() => console.log("Outside input field")}
+                          onBlur={() => {
+                            console.log("Outside input field");
+                            /* onCancelName(); */
+                          }}
                           onFocus={() => console.log("Inside input field")}
                           value={name}
                           onChange={(event) => {
@@ -444,14 +464,14 @@ const ResourcePage = (props) => {
                     </td>
                     <td
                       key={resource.resourceCode}
-                      onFocus={() =>
+                      /* onFocus={() =>
                         onEditCode({
                           code: resource.resourceCode,
                           currentCode: resource.resourceCode,
                         })
                       }
-                      onBlur={() => onCancelCode()}
-                      onClick={() => {
+                      onBlur={() => onCancelCode()} */
+                      /* onClick={() => {
                         console.log("Table data clicked!");
                         React.style = {
                           border: "#ec641c",
@@ -460,34 +480,47 @@ const ResourcePage = (props) => {
                           code: resource.resourceCode,
                           currentCode: resource.resourceCode,
                         });
-                      }}
+                      }} */
                     >
                       {inEditCode.status &&
                       inEditCode.rowKey === resource.resourceCode ? (
-                        <Fragment>
-                          <CheckCircleFill
-                            fill="#ec641c"
-                            onClick={() => {
-                              console.log("Clicked!");
-                              onSaveCode({
-                                currentCode: resource.resourceCode,
-                                newCode: code,
-                              });
-                            }}
-                          />{" "}
-                        </Fragment>
-                      ) : null}
-
+                        <CheckCircleFill
+                          fill="#ec641c"
+                          onClick={() => {
+                            console.log("Save code button clicked!");
+                            onSaveCode({
+                              currentCode: resource.resourceCode,
+                              newCode: code,
+                            });
+                          }}
+                        />
+                      ) : null}{" "}
                       {inEditCode.status &&
                       inEditCode.rowKey === resource.resourceCode ? (
-                        <Fragment>
-                          <XCircleFill
-                            fill="#ec641c"
-                            onClick={() => onCancelCode()}
-                          />{" "}
-                        </Fragment>
-                      ) : null}
-
+                        <XCircleFill
+                          fill="#ec641c"
+                          onClick={() => {
+                            console.log("Cancel code button clicked!");
+                            onCancelCode();
+                          }}
+                        />
+                      ) : null}{" "}
+                      {inEditCode.status &&
+                      inEditCode.rowKey === resource.resourceCode ? null : (
+                        <PenFill
+                          fill="#ec641c"
+                          width="13"
+                          height="13"
+                          onClick={() => {
+                            console.log("Edit code button clicked!");
+                            onEditCode({
+                              code: resource.resourceCode,
+                              currentCode: resource.resourceCode,
+                            });
+                          }}
+                        />
+                      )}
+                      {"  "}
                       {inEditCode.status &&
                       inEditCode.rowKey === resource.resourceCode ? (
                         <input
