@@ -407,13 +407,27 @@ const ResourcePage = (props) => {
                     </td>
                     <td
                       key={resource.resourceCode}
-                      /* contentEditable="true" */
-                      /* onBlur={() => console.log("Focus has been lost")}
-                      onFocus={() => console.log("Focus is here")} */
+                      onFocus={() =>
+                        setInEditCode({
+                          status: true,
+                          rowKey: resource.resourceCode,
+                        })
+                      }
+                      onBlur={() => onCancelCode()}
                     >
-                      <CheckCircleFill fill="#ec641c" />{" "}
-                      <XCircleFill fill="#ec641c" />
-                      {}
+                      {inEditCode.status &&
+                      inEditCode.rowKey === resource.resourceCode ? (
+                        <Fragment>
+                          <CheckCircleFill fill="#ec641c" />{" "}
+                        </Fragment>
+                      ) : null}
+
+                      {inEditCode.status &&
+                      inEditCode.rowKey === resource.resourceCode ? (
+                        <Fragment>
+                          <XCircleFill fill="#ec641c" />{" "}
+                        </Fragment>
+                      ) : null}
                       <input
                         type="text"
                         style={{
@@ -421,8 +435,8 @@ const ResourcePage = (props) => {
                           background: "transparent",
                           textAlign: "center",
                         }}
-                        onBlur={() => console.log("Focus has been lost")}
-                        onFocus={() => console.log("Focus is here")}
+                        onBlur={() => console.log("Inside input field")}
+                        onFocus={() => console.log("Outside input field")}
                         value={resource.resourceCode}
                       />
                     </td>
