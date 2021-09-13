@@ -400,7 +400,7 @@ const ResourcePage = (props) => {
                       inEditName.rowKey === resource.resourceName ? (
                         <CheckCircleFill
                           fill="#ec641c"
-                          Click={() => {
+                          onClick={() => {
                             console.log("Clicked!");
                             /* onSaveName({
                                 currentName: resource.resourceName,
@@ -467,12 +467,13 @@ const ResourcePage = (props) => {
                         <Fragment>
                           <CheckCircleFill
                             fill="#ec641c"
-                            onClick={() =>
+                            onClick={() => {
+                              console.log("Clicked!");
                               onSaveCode({
                                 currentCode: resource.resourceCode,
                                 newCode: code,
-                              })
-                            }
+                              });
+                            }}
                           />{" "}
                         </Fragment>
                       ) : null}
